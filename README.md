@@ -1,5 +1,7 @@
 # easylocker-web
 
+We are using [xicons](https://www.xicons.org/#/).
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup

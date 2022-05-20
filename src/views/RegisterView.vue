@@ -1,10 +1,10 @@
 <template>
   <div class="m-3">
-    <h2>Sign in</h2>
+    <h2>Sign up</h2>
 
     <b-form>
       <div class="mb-2">
-        <span>Nome</span>
+        <span>Name</span>
         <b-form-input v-model="user.name" />
       </div>
 
@@ -19,12 +19,27 @@
       </div>
 
       <div class="mb-2">
+        <span>Conferma email</span>
+        <b-form-input v-model="user.email" />
+      </div>
+
+      <div class="mb-2">
         <span>Password</span>
         <b-form-input v-model="user.password" />
       </div>
 
-      <b-button class="float-end" @click.prevent="register">Sign in</b-button>
+      <div class="mb-2">
+        <span>Conferma password</span>
+        <b-form-input v-model="user.password" />
+      </div>
+
+
+
+      <b-button class="float-end" @click.prevent="register">Sign up</b-button>
     </b-form>
+
+
+
   </div>
 </template>
 
@@ -48,7 +63,7 @@ export default defineComponent({
   },
   methods: {
     register() {
-      console.log('Sign in')
+      console.log('Sign up')
     }
   }
 });

@@ -15,6 +15,9 @@
             <RouterLink class="nav-link" to="/register">Sign up</RouterLink>
           </li>
           <li class="nav-item">
+            <RouterLink class="nav-link" to="/signin">Sign in</RouterLink>
+          </li>
+          <li class="nav-item">
             <RouterLink class="nav-link" to="/about">About</RouterLink>
           </li>
         </ul>

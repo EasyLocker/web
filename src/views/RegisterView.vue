@@ -42,13 +42,16 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import {BButton, BForm, BFormInput} from "bootstrap-vue-3";
-import axiosInstance from "@/plugins/axios";
+import { useAuthStore } from "@/stores/auth";
 
 export default defineComponent({
   name: "RegisterView",
   components: {BButton, BFormInput, BForm},
   setup() {
+    // eslint-disable-next-line no-undef
+    const auth = useAuthStore();
     return {
+      auth,
       user: ref({
         name: '',
         surname: '',
@@ -70,12 +73,7 @@ export default defineComponent({
         return
       }
 
-      try {
-        const res = await axiosInstance.post('users/register', this.user)
-        console.log(res)
-      } catch (err) {
-        console.log('err')
-      }
+      await this.auth.registerUser(this.user);
     }
   }
 });

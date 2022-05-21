@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import {BootstrapVue3} from "bootstrap-vue-3";
+// @ts-ignore
 
 import App from "./App.vue";
 import router from "./router";

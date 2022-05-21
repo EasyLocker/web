@@ -5,7 +5,7 @@
     <b-form>
       <div class="mb-2">
         <span>Name</span>
-        <b-form-input v-model="user.name" />
+        <b-form-input required v-model="user.name" />
       </div>
 
       <div class="mb-2">
@@ -19,8 +19,8 @@
       </div>
 
       <div class="mb-2">
-        <span>Conferma email</span>
-        <b-form-input v-model="user.email" />
+        <span>Confirm email</span>
+        <b-form-input v-model="emailConfirmation" />
       </div>
 
       <div class="mb-2">
@@ -29,16 +29,12 @@
       </div>
 
       <div class="mb-2">
-        <span>Conferma password</span>
-        <b-form-input v-model="user.password" />
+        <span>Confirm password</span>
+        <b-form-input v-model="passwordConfirmation" />
       </div>
-
-
 
       <b-button class="float-end" @click.prevent="register">Sign up</b-button>
     </b-form>
-
-
 
   </div>
 </template>
@@ -46,6 +42,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import {BButton, BForm, BFormInput} from "bootstrap-vue-3";
+import axiosInstance from "@/plugins/axios";
 
 export default defineComponent({
   name: "RegisterView",
@@ -58,12 +55,27 @@ export default defineComponent({
         email: '',
         password: '',
       }),
-      data: [1, 5, 7],
+      emailConfirmation: '',
+      passwordConfirmation: '',
     };
   },
   methods: {
-    register() {
-      console.log('Sign up')
+    async register() {
+      if (this.user.email !== this.emailConfirmation) {
+        alert('Emails do not match!')
+        return
+      }
+      if (this.user.password !== this.passwordConfirmation) {
+        alert('Passwords do not match!')
+        return
+      }
+
+      try {
+        const res = await axiosInstance.post('users/register', this.user)
+        console.log(res)
+      } catch (err) {
+        console.log('err')
+      }
     }
   }
 });

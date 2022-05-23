@@ -12,7 +12,9 @@ export const useAuthStore = defineStore({
       id: '',
       token: '',
       email: '',
-      role: ''
+      role: '',
+      name: '',
+      surname: ''
     }
   },
   getters: {
@@ -34,15 +36,19 @@ export const useAuthStore = defineStore({
     async registerUser(user: {name: string, surname: string, email: string, password: string}) {
       try {
         const { data } = await axiosInstance.post('users/register', user);
+        alert('Registration completed successfully!')
         await this.completeAuthentication(data);
       } catch (err) {
       }
     },
-    async completeAuthentication(data: {id: string, token: string, email: string, role: string}) {
+    async completeAuthentication(data: {id: string, token: string, email: string, role: string, name: string, surname: string}) {
       this.id = data.id;
       this.token = data.token;
       this.email = data.email;
       this.role = data.role;
+      this.name = data.name;
+      this.surname = data.surname;
+
 
       updateHeaders(this.token);
       await router.push('/');
@@ -52,6 +58,8 @@ export const useAuthStore = defineStore({
       this.token = '';
       this.email = '';
       this.role = '';
+      this.name = '';
+      this.surname = '';
 
       updateHeaders(this.token);
       await router.push('/login');

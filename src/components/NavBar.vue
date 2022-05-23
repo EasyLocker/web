@@ -8,14 +8,15 @@
 <!--      </button>-->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          <li class="nav-item" v-if="auth.isLogged">
             <RouterLink class="nav-link" to="/">Home</RouterLink>
           </li>
-          <li class="nav-item">
-            <RouterLink class="nav-link" to="/register">Sign up</RouterLink>
+
+          <li class="nav-item" v-if="auth.isLogged">
+            <span class="nav-link" @click="auth.logout()">Logout</span>
           </li>
-          <li class="nav-item">
-            <RouterLink class="nav-link" to="/signin">Sign in</RouterLink>
+          <li class="nav-item" v-if="!auth.isLogged">
+            <RouterLink class="nav-link" to="/login">Login</RouterLink>
           </li>
           <li class="nav-item">
             <RouterLink class="nav-link" to="/about">About</RouterLink>
@@ -26,16 +27,10 @@
   </nav>
 </template>
 
-<script lang="ts">
-import {defineComponent} from "vue";
+<script setup lang="ts">
+import {useAuthStore} from "@/stores/auth";
 
-export default defineComponent({
-  name: "NavBar",
-  setup() {
-    return {}
-  },
-  methods: {}
-})
+const auth = useAuthStore();
 </script>
 
 <style scoped>

@@ -9,7 +9,10 @@ import AppLayout from "@/components/AppLayout.vue";
 import {useAuthStore} from "@/stores/auth";
 import {updateHeaders} from "@/plugins/axios";
 
-const auth = useAuthStore()
+const auth = useAuthStore();
+auth.$subscribe(state => {
+  localStorage.setItem("authStore", JSON.stringify(state.events.target));
+});
 updateHeaders(auth.token);
 
 </script>

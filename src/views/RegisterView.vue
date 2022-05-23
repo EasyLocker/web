@@ -25,12 +25,12 @@
 
       <div class="mb-2">
         <span>Password</span>
-        <b-form-input v-model="user.password" />
+        <b-form-input type="password" v-model="user.password" />
       </div>
 
       <div class="mb-2">
         <span>Confirm password</span>
-        <b-form-input v-model="passwordConfirmation" />
+        <b-form-input type="password" v-model="passwordConfirmation" />
       </div>
 
       <b-button class="float-end" @click.prevent="register">Sign up</b-button>

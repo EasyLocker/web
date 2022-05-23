@@ -5,15 +5,19 @@ import router from "@/router";
 
 export const useAuthStore = defineStore({
   id: 'auth',
-  state: () => ({
-    id: '',
-    token: '',
-    email: '',
-    role: ''
-  }),
+  state: () => {
+    const savedStateStr = localStorage.getItem("authStore");
+
+    return  savedStateStr ? JSON.parse(savedStateStr) : {
+      id: '',
+      token: '',
+      email: '',
+      role: ''
+    }
+  },
   getters: {
     isLogged: (state) => {
-      return state.token !== null
+      return state.token && state.token !== ''
     },
     isAdmin: (state) => {
       return state.role === 'admin'
@@ -43,11 +47,14 @@ export const useAuthStore = defineStore({
       updateHeaders(this.token);
       await router.push('/');
     },
-    logout() {
+    async logout() {
       this.id = '';
       this.token = '';
       this.email = '';
       this.role = '';
+
+      updateHeaders(this.token);
+      await router.push('/login');
     },
   }
 })

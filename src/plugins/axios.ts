@@ -2,19 +2,17 @@ import axios from 'axios'
 import {useAuthStore} from '@/stores/auth'
 
 // ---------------- Use localhost setting ----------------
-// const useApiLocalhostUrl = true
-//
-// const isLocalhost = location.hostname === 'localhost'
-// const isDev = location.hostname.startsWith('test.')
-//
-// const baseURL = (!isLocalhost ? isDev
-//   ? 'https://test.api.easylocker.com' : 'https://api.easylocker.com'
-//   : useApiLocalhostUrl
-//     ? 'http://localhost:8000'
-//     : 'https://test.api.easylocker.com'
-// ) + '/api'
+const useApiLocalhostUrl = true
 
-const baseURL = 'http://localhost:4000/api/v1'
+const isLocalhost = location.hostname === 'localhost'
+const isDev = location.hostname === 'easylocker-staging.herokuapp.com'
+
+const baseURL = (!isLocalhost ? isDev
+  ? 'https://easylocker-staging-api.herokuapp.com' : 'https://easylocker-api.herokuapp.com'
+  : useApiLocalhostUrl
+    ? 'http://localhost:8000'
+    : 'https://easylocker-staging-api.herokuapp.com'
+) + '/api/v1'
 
 const axiosInstance = axios.create({
   baseURL

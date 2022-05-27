@@ -14,7 +14,7 @@ import {useAuthStore} from '@/stores/auth'
 //     : 'https://test.api.easylocker.com'
 // ) + '/api'
 
-const baseURL = 'http://localhost:4000/api/v1'
+const baseURL = 'http://localhost:8000/api/v1'
 
 const axiosInstance = axios.create({
   baseURL

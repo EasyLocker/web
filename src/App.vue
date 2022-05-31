@@ -8,9 +8,10 @@
 import AppLayout from "@/components/AppLayout.vue";
 import {useAuthStore} from "@/stores/auth";
 import {updateHeaders} from "@/plugins/axios";
+import type {StateTree} from "pinia";
 
 const auth = useAuthStore();
-auth.$subscribe(state => {
+auth.$subscribe((state: StateTree) => {
   localStorage.setItem("authStore", JSON.stringify(state.events.target));
 });
 updateHeaders(auth.token);

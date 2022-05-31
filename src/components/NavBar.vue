@@ -13,7 +13,7 @@
           </li>
 
           <li class="nav-item" v-if="auth.isLogged">
-            <span class="nav-link" to="/lockers">Lista armadietti</span>
+            <RouterLink class="nav-link" to="/lockers">Lista armadietti</RouterLink>
           </li>
 
           <li class="nav-item" v-if="auth.isLogged">

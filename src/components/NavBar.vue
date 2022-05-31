@@ -13,8 +13,13 @@
           </li>
 
           <li class="nav-item" v-if="auth.isLogged">
+            <RouterLink class="nav-link" to="/lockers">Lista armadietti</RouterLink>
+          </li>
+
+          <li class="nav-item" v-if="auth.isLogged">
             <span class="nav-link" @click="auth.logout()">Logout</span>
           </li>
+
           <li class="nav-item" v-if="!auth.isLogged">
             <RouterLink class="nav-link" to="/login">Login</RouterLink>
           </li>

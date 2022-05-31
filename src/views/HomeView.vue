@@ -1,27 +1,53 @@
 <template>
-  <div class="title-font m-5 p-2 text-center">
-    <h1>EasyLocker</h1>
-    <h3>
-      Hi {{auth.name}}
-    </h3>
 
-  </div>
+  <ViewLayout title="Le tue prenotazioni" :buttons="['Prenota', 'Sblocca']" background="../../immagini/bkgr_rosa.jpg">
+    <template v-slot:subtitle>
+      <div>
+        <h3>
+          Hi {{ auth.name }}
+        </h3>
+      </div>
+    </template>
 
-
-  <div class="has-bg-img">
-    <img class="bg-img" src="../../immagini/bkgr_rosa.jpg" alt="background_pink">
-  </div>
+    <HomeButton name="ciaooo"></HomeButton>
+    <HomeButton name="ciaooo"></HomeButton>
+    <HomeButton name="ciaooo"></HomeButton>
+    <HomeButton name="ciaooo"></HomeButton>
+    <HomeButton name="ciaooo"></HomeButton>
+  </ViewLayout>
 
 </template>
 
 <script setup lang="ts">
+import {useAuthStore} from "@/stores/auth";
+import HomeButton from "@/components/HomeButton.vue";
+import {BButton} from "bootstrap-vue-3";
+import ViewLayout from "@/components/ViewLayout.vue";
+import IconDocumentation from "@/components/old_components/icons/IconDocumentation.vue";
 
-  import {useAuthStore} from "@/stores/auth";
-
-  const auth = useAuthStore();
-
+const auth = useAuthStore();
 </script>
 
-.has-bg-img{
+<style>
 
+.books-buttons {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 20px; /* Increase/decrease this value for cross-browser compatibility */
+  box-sizing: content-box; /* So the width will be 100% + 17px */
 }
+
+.font-1 {
+  font-family: "Adobe Caslon Pro";
+}
+
+.pre-sbl-button {
+  border-radius: 16px;
+  background: indianred;
+}
+
+</style>
+
+
+

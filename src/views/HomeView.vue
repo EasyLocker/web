@@ -1,57 +1,34 @@
 <template>
-  <div class="w-100 bg-rosa overflow-hidden">
 
-    <div class="title-font p-5 text-center">
-      <h1>EasyLocker</h1>
-      <h3>
-        Hi {{ auth.name }}
-      </h3>
-    </div>
-
-
-    <div>
-      <h4 class="font-1 ms-3">Le tue prenotazioni</h4>
-    </div>
-
-    <div class="w-100 h-auto overflow-hidden my-4">
-      <div class="books-buttons">
-        <HomeButton name="ciaooo"></HomeButton>
-        <HomeButton name="ciaooo"></HomeButton>
-        <HomeButton name="ciaooo"></HomeButton>
-        <HomeButton name="ciaooo"></HomeButton>
-        <HomeButton name="ciaooo"></HomeButton>
+  <ViewLayout title="Le tue prenotazioni" :buttons="['Prenota', 'Sblocca']" background="../../immagini/bkgr_rosa.jpg">
+    <template v-slot:subtitle>
+      <div>
+        <h3>
+          Hi {{ auth.name }}
+        </h3>
       </div>
-    </div>
+    </template>
 
-    <div class="text-center">
-      <b-button variant="success" class="pre-sbl-button mx-3">Prenota</b-button>
-      <b-button variant="success" class="pre-sbl-button mx-3">Sblocca</b-button>
-    </div>
+    <HomeButton name="ciaooo"></HomeButton>
+    <HomeButton name="ciaooo"></HomeButton>
+    <HomeButton name="ciaooo"></HomeButton>
+    <HomeButton name="ciaooo"></HomeButton>
+    <HomeButton name="ciaooo"></HomeButton>
+  </ViewLayout>
 
-
-    <!--<div>
-      <img src="../../immagini/bkgr_rosa.jpg" alt="background_pink">
-    </div
-
-     <div :style="{backgroundImage: '../../immagini/bkgr_rosa.jpg'}">
-     </div>-->
-  </div>
 </template>
 
 <script setup lang="ts">
 import {useAuthStore} from "@/stores/auth";
 import HomeButton from "@/components/HomeButton.vue";
 import {BButton} from "bootstrap-vue-3";
+import ViewLayout from "@/components/ViewLayout.vue";
+import IconDocumentation from "@/components/old_components/icons/IconDocumentation.vue";
 
 const auth = useAuthStore();
 </script>
 
 <style>
-.bg-rosa {
-  height: 100vh;
-  background: url("../../immagini/bkgr_rosa.jpg") center;
-  background-size: cover;
-}
 
 .books-buttons {
   width: 100%;

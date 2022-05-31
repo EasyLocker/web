@@ -14,10 +14,12 @@ declare module '@vue/runtime-core' {
     IconEcosystem: typeof import('./src/components/old_components/icons/IconEcosystem.vue')['default']
     IconSupport: typeof import('./src/components/old_components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/old_components/icons/IconTooling.vue')['default']
+    LockerButton: typeof import('./src/components/LockerButton.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TheWelcome: typeof import('./src/components/old_components/TheWelcome.vue')['default']
+    ViewLayout: typeof import('./src/components/ViewLayout.vue')['default']
     WelcomeItem: typeof import('./src/components/old_components/WelcomeItem.vue')['default']
   }
 }

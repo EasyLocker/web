@@ -2,7 +2,7 @@ import axios from 'axios'
 import {useAuthStore} from '@/stores/auth'
 
 // ---------------- Use localhost setting ----------------
-const useApiLocalhostUrl = true
+const useApiLocalhostUrl = false
 
 const isLocalhost = location.hostname === 'localhost'
 const isDev = location.hostname === 'easylocker-staging.herokuapp.com'

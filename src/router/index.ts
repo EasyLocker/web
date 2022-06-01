@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import {useAuthStore} from "@/stores/auth";
+import {useAuthStore} from "@/stores/auth"
 import LockersView from '../views/LockersView.vue'
+import CreateLockerView from '../views/CreateLockerView.vue'
+import LockersManagementView from '../views/LockersManagementView.vue'
 
 
 function redirect (next: any, path: any) {
@@ -68,7 +70,21 @@ const router = createRouter({
           redirect(next, '/')
         }
       }
+    },
+    {
+      path: '/createLocker',
+      name: 'createLocker',
+      component: CreateLockerView,
+      beforeEnter
+    },
+
+    {
+      path: '/lockersManagement',
+      name: 'lockersManagement',
+      component: LockersManagementView,
+      beforeEnter
     }
+
   ]
 })
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100 bg-easylocker overflow-hidden" :style="`background: url(${background}) `">
+  <div class="w-100 bg-easylocker overflow-hidden" :style="`background-image: url(${background})`">
 
     <div class="title-font p-5 text-center">
       <h1>EasyLocker</h1>
@@ -46,11 +46,11 @@ export default defineComponent({
 })
 </script>
 
+//Does not work
 <style scoped>
 .bg-easylocker {
   height: 100vh;
-  background: no-repeat fixed center;
   background-size: cover;
-
+  background-position: center;
 }
 </style>

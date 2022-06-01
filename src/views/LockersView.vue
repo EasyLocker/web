@@ -10,8 +10,6 @@
       </template>
     </b-input-group>
 
-
-
     <LockerButton v-for="locker in lockers" v-bind:key="locker._id" :name="locker.name"></LockerButton>
   </ViewLayout>
 </template>

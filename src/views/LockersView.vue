@@ -10,9 +10,7 @@
       </template>
     </b-input-group>
 
-
-
-    <LockerButton v-for="locker in lockers" v-bind:key="locker._id" :name="locker.name"></LockerButton>
+    <LockerButton v-for="locker in lockers" v-bind:key="locker._id" :name="locker.name" :locker-id="locker._id"></LockerButton>
   </ViewLayout>
 </template>
 
@@ -51,7 +49,7 @@ export default defineComponent({
             name: this.data.name
           }
         })
-        console.log(response);
+        //console.log(response);
         this.lockers = response.data;
       } catch (err) {
         console.log(err);

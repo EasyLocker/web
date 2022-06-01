@@ -2,7 +2,7 @@
   <div class="mx-3 mx-md-5 my-2">
     <div class="card home-button w-100">
       <div class="p-2">
-        <b-button class="float-end">Book</b-button>
+        <b-button class="float-end" @click="bookLocker">Book</b-button>
         <div class="font-1 ms-3">{{name}}</div>
         <div class="font-2 ms-3">Via Stazione</div>
       </div>
@@ -12,13 +12,43 @@
 
 <script>
 import {BButton} from "bootstrap-vue-3";
-export default {
+import axiosInstance from "@/plugins/axios";
+import {useAuthStore} from "@/stores/auth";
+import {defineComponent} from "vue";
+
+
+export default defineComponent({
   name: "LockerButton",
   components: {BButton},
   props: {
-    name: String
+    name: {
+      type: String,
+      require: true
+    },
+    lockerId: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    async bookLocker() {
+      const auth = useAuthStore();
+
+      try {
+        console.log(this.lockerId);
+        const response = await axiosInstance.patch('/lockers', {
+            id: this.lockerId,
+            userId: auth.id
+        })
+        //console.log(response);
+        this.lockers = response.data;
+      } catch (err) {
+        console.log(err);
+      }
+    }
   }
-}
+});
+
 </script>
 
 <style scoped>

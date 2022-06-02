@@ -1,14 +1,16 @@
 <template>
+  <b-container :toast="{root: true}" fluid="sm" position="position-fixed"></b-container>
+
   <AppLayout/>
 
   <NavBar/>
 </template>
 
 <script setup lang="ts">
-import AppLayout from "@/components/AppLayout.vue";
 import {useAuthStore} from "@/stores/auth";
 import {updateHeaders} from "@/plugins/axios";
 import type {StateTree} from "pinia";
+import AppLayout from "@/components/AppLayout.vue";
 
 const auth = useAuthStore();
 auth.$subscribe((state: StateTree) => {

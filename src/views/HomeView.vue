@@ -28,15 +28,7 @@ import IconDocumentation from "@/components/old_components/icons/IconDocumentati
 const auth = useAuthStore();
 </script>
 
-<style>
-
-.books-buttons {
-  width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-  padding-right: 20px; /* Increase/decrease this value for cross-browser compatibility */
-  box-sizing: content-box; /* So the width will be 100% + 17px */
-}
+<style scoped>
 
 .font-1 {
   font-family: "Adobe Caslon Pro";

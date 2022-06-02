@@ -1,26 +1,26 @@
 <template>
+<ViewLayout title="Gestione armadietti" background="../../immagini/bkge_verde.jpg" :buttons="['Crea']">
+<!--  <h2 class="font mx-4"></h2>-->
 
-  <h2>Gestione armadietti </h2>
-
-  <div class="align-content-center">
-    <b-button href="/createLocker" >CREA</b-button>
-  </div>
+<!--  <div class="text-center">-->
+<!--    <b-button href="/createLocker" class="button" >Crea</b-button>-->
+<!--  </div>-->
 
   <LockerButton v-for="locker in lockers" v-bind:key="locker._id" :name="locker.name"></LockerButton>
 
 
-
-
+</ViewLayout>
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue";
 import {BButton} from "bootstrap-vue-3";
 import axiosInstance from "@/plugins/axios";
+import ViewLayout from "@/components/ViewLayout.vue";
 
 export default defineComponent({
   name: "LockersManagementView",
-  components: {BButton},
+  components: {ViewLayout, BButton},
 
   data () {
     return {
@@ -53,6 +53,16 @@ export default defineComponent({
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+.button{
+  color: black;
+  background-color: #91FCAC;
+  @extend .font;
+}
+
+.font{
+  font-family: "Adobe Caslon Pro";
+}
 
 </style>

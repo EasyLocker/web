@@ -1,56 +1,55 @@
 <template>
   <ViewLayout title="Tutti i lockers" background="../../immagini/bkgr_blu.jpg">
-
-    <b-input-group prepend="Search">
-      <b-form-input v-model="data.name" @keydown.enter="getLockers"></b-form-input>
-      <template #append>
-        <b-button variant="primary" @click="getLockers">
-          <font-awesome-icon icon="magnifying-glass" />
-        </b-button>
+    <LockerSearchLayout list-btn-text="Book">
+      <template #default="{lockers}">
+        <LockerButton
+            v-for="locker in lockers"
+            v-bind:key="locker._id"
+            :name="locker.name"
+            :locker-id="locker._id"
+            :button-text="locker.bookedByMe ? 'Unbook' : 'Book'"
+            @click="locker.bookedByMe ? unbookLocker(locker.id) : bookLocker(locker.id)"
+        />
       </template>
-    </b-input-group>
-
-    <LockerButton v-for="locker in lockers" v-bind:key="locker._id" :name="locker.name" :locker-id="locker._id"></LockerButton>
+    </LockerSearchLayout>
   </ViewLayout>
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue";
 import ViewLayout from "@/components/ViewLayout.vue";
-import LockerButton from "@/components/LockerButton.vue";
+import LockerList from "@/components/LockerSearchLayout.vue";
+import {useAuthStore} from "@/stores/auth";
 import axiosInstance from "@/plugins/axios";
-import {BButton, BFormInput, BFormTextarea, BInputGroup} from "bootstrap-vue-3";
+import LockerSearchLayout from "@/components/LockerSearchLayout.vue";
 
 export default defineComponent({
   components: {
-    BFormTextarea,
-    BButton,
-    BInputGroup,
-    BFormInput,
-    LockerButton,
+    LockerSearchLayout,
     ViewLayout
   },
-  data () {
-    return {
-      lockers: null,
-      data: {
-        name: ''
-      }
-    }
-  },
-  mounted() {
-    this.getLockers();
-  },
   methods: {
-    async getLockers () {
+    async unbookLocker(lockerId) {
+      console.log('Hey, unbooko locker! ' + lockerId)
+      //const auth = useAuthStore();
+
       try {
-        const response = await axiosInstance.get('/lockers', {
-          params: {
-            name: this.data.name
-          }
+        await axiosInstance.patch('/lockers/unbook', {
+          id: lockerId
         })
-        //console.log(response);
-        this.lockers = response.data;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async bookLocker(lockerId) {
+      console.log('Hey, booko locker! ' + lockerId)
+      const auth = useAuthStore();
+
+      try {
+        await axiosInstance.patch('/lockers/book', {
+          id: lockerId,
+          userId: auth.id
+        })
       } catch (err) {
         console.log(err);
       }

@@ -35,6 +35,7 @@ interface Locker {
 let searchText = '';
 let data = reactive<{lockers?: Locker[]}>({});
 
+
 onMounted(() => {
   getLockers();
 })
@@ -50,12 +51,8 @@ async function getLockers() {
         name: searchText
       }
     })
-    console.log(response.data);
     data.lockers = response.data;
-  } catch (err) {
-    console.log(err);
-    console.log(err);
-  }
+  } catch (ignored) {}
 }
 
 function btnClick () {

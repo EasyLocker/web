@@ -4,9 +4,9 @@
       <template #default="{lockers}">
         <LockerButton
             v-for="locker in lockers"
-            v-bind:key="locker._id"
+            v-bind:key="locker.id"
             :name="locker.name"
-            :locker-id="locker._id"
+            :locker-id="locker.id"
             :button-text="locker.bookedByMe ? 'Unbook' : 'Book'"
             :disabled="locker.bookedByOthers"
             @click="locker.bookedByMe ? cancelBookingLocker(locker.id, locker.name) : bookLocker(locker.id, locker.name)"

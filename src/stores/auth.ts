@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
-import axios, {updateHeaders} from "../plugins/axios";
+import {defineStore} from 'pinia'
+import axios from "../plugins/axios";
 import axiosInstance from "../plugins/axios";
 import router from "@/router";
 
@@ -8,14 +8,14 @@ export const useAuthStore = defineStore({
   state: () => {
     const savedStateStr = localStorage.getItem("authStore");
 
-    return  savedStateStr ? JSON.parse(savedStateStr) : {
+    return savedStateStr ? JSON.parse(savedStateStr) : {
       id: '',
       token: '',
       email: '',
       role: '',
       name: '',
       surname: ''
-    }
+    };
   },
   getters: {
     isLogged: (state) => {
@@ -50,8 +50,6 @@ export const useAuthStore = defineStore({
       this.name = data.name;
       this.surname = data.surname;
 
-
-      updateHeaders(this.token);
       await router.push('/');
     },
     async logout() {
@@ -62,7 +60,6 @@ export const useAuthStore = defineStore({
       this.name = '';
       this.surname = '';
 
-      updateHeaders(this.token);
       await router.push('/login');
     },
   }

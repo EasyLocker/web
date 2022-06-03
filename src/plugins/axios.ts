@@ -18,12 +18,20 @@ const axiosInstance = axios.create({
   baseURL
 })
 
-function updateHeaders (token: string) {
-  axiosInstance.defaults.headers = token ? {
-    // @ts-ignore
-    Authorization: `Bearer ${token}`
-  } : {};
-}
+let authStore;
+
+axiosInstance.interceptors.request.use(config => {
+  authStore = authStore || useAuthStore(); // Cache the store
+  const token = authStore.token;
+
+  if (token) {
+    config.headers.common['Authorization'] = `Bearer ${token}`;
+  }
+
+  return config;
+}, error => {
+  return Promise.reject(error);
+});
 
 function showError (text: string, callback?: () => void) {
   alert(text)
@@ -64,4 +72,3 @@ axiosInstance.interceptors.response.use(
 )
 
 export default axiosInstance
-export { updateHeaders }

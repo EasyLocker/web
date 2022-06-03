@@ -54,6 +54,7 @@ async function getLockers() {
     data.lockers = response.data;
   } catch (err) {
     console.log(err);
+    console.log(err);
   }
 }
 

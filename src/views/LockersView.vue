@@ -8,8 +8,8 @@
             :name="locker.name"
             :locker-id="locker._id"
             :button-text="locker.bookedByMe ? 'Unbook' : 'Book'"
-            :disabled="locker.bookedByMe"
-            @click="locker.bookedByMe ? cancelBookingLocker(locker.id) : bookLocker(locker.id) "
+            :disabled="locker.bookedByOthers"
+            @click="locker.bookedByMe ? cancelBookingLocker(locker.id, locker.name) : bookLocker(locker.id, locker.name)"
         />
       </template>
     </LockerSearchLayout>
@@ -24,31 +24,39 @@ import LockerSearchLayout from "@/components/LockerSearchLayout.vue";
 import LockerButton from "@/components/LockerButton.vue";
 
 
-async function cancelBookingLocker(lockerId: string) {
-  console.log('Hey, free locker! ' + lockerId);
+async function cancelBookingLocker(lockerId: string, lockerName: string) {
 
   try {
     await axiosInstance.patch('/lockers/cancel', {
       id: lockerId,
       bookedByMe: false,
+      bookedByOthers: false
     })
   } catch (err) {
     console.log(err);
+    alert("Qualcosa è andato storto");
+    return;
   }
+
+  alert("Prenotazione locker " + lockerName + " annullata.");
 }
-async function bookLocker(lockerId: string) {
-  console.log('Hey, booko locker! ' + lockerId)
+async function bookLocker(lockerId: string, lockerName: string) {
   const auth = useAuthStore();
 
   try {
     await axiosInstance.patch('/lockers/book', {
       id: lockerId,
       userId: auth.id,
-      bookedByMe: true
+      bookedByMe: true,
+      bookedByOthers: true
     })
   } catch (err) {
     console.log(err);
+    alert("Qualcosa è andato storto");
+    return;
   }
+
+  alert("Locker " + lockerName + " prenotato!");
 }
 
 </script>

@@ -8,54 +8,49 @@
             :name="locker.name"
             :locker-id="locker._id"
             :button-text="locker.bookedByMe ? 'Unbook' : 'Book'"
-            @click="locker.bookedByMe ? unbookLocker(locker.id) : bookLocker(locker.id)"
+            :disabled="locker.bookedByMe"
+            @click="locker.bookedByMe ? cancelBookingLocker(locker.id) : bookLocker(locker.id) "
         />
       </template>
     </LockerSearchLayout>
   </ViewLayout>
 </template>
 
-<script lang="ts">
-import {defineComponent} from "vue";
+<script lang="ts" setup>
 import ViewLayout from "@/components/ViewLayout.vue";
-import LockerList from "@/components/LockerSearchLayout.vue";
 import {useAuthStore} from "@/stores/auth";
 import axiosInstance from "@/plugins/axios";
 import LockerSearchLayout from "@/components/LockerSearchLayout.vue";
+import LockerButton from "@/components/LockerButton.vue";
 
-export default defineComponent({
-  components: {
-    LockerSearchLayout,
-    ViewLayout
-  },
-  methods: {
-    async unbookLocker(lockerId) {
-      console.log('Hey, unbooko locker! ' + lockerId)
-      //const auth = useAuthStore();
 
-      try {
-        await axiosInstance.patch('/lockers/unbook', {
-          id: lockerId
-        })
-      } catch (err) {
-        console.log(err);
-      }
-    },
-    async bookLocker(lockerId) {
-      console.log('Hey, booko locker! ' + lockerId)
-      const auth = useAuthStore();
+async function cancelBookingLocker(lockerId: string) {
+  console.log('Hey, free locker! ' + lockerId);
 
-      try {
-        await axiosInstance.patch('/lockers/book', {
-          id: lockerId,
-          userId: auth.id
-        })
-      } catch (err) {
-        console.log(err);
-      }
-    }
+  try {
+    await axiosInstance.patch('/lockers/cancel', {
+      id: lockerId,
+      bookedByMe: false,
+    })
+  } catch (err) {
+    console.log(err);
   }
-})
+}
+async function bookLocker(lockerId: string) {
+  console.log('Hey, booko locker! ' + lockerId)
+  const auth = useAuthStore();
+
+  try {
+    await axiosInstance.patch('/lockers/book', {
+      id: lockerId,
+      userId: auth.id,
+      bookedByMe: true
+    })
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 </script>
 
 <style scoped>

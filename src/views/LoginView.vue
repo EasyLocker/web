@@ -13,7 +13,7 @@
       >
         <b-form-input
             @keydown.enter="login"
-            id="input-1"
+            id="email"
             v-model="user.email"
             type="email"
             placeholder="Enter email"
@@ -22,7 +22,7 @@
       </b-form-group>
 
       <b-form-group
-          id="input-group-1"
+          id="password"
           label="Password:"
           label-for="input-2"
           description="Password"
@@ -39,7 +39,7 @@
 
 
       <div class="text-center">
-        <b-button class="text-center">Login</b-button>
+        <b-button class="text-center" @click="login">Login</b-button>
       </div>
 
     </b-form>
@@ -65,10 +65,6 @@ let auth = useAuthStore();
 
 function login() {
   auth.login(user.value);
-}
-
-function test(){
-  console.log("HELLOOOO");
 }
 
 </script>

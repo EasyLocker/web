@@ -44,7 +44,6 @@ export const useAuthStore = defineStore({
     async completeAuthentication(data: {id: string, token: string, email: string, role: string, name: string, surname: string}) {
       this.id = data.id;
       this.token = data.token;
-      console.log("At frontend: " + data.token);
       this.email = data.email;
       this.role = data.role;
       this.name = data.name;

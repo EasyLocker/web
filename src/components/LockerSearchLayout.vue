@@ -9,7 +9,7 @@
       </template>
     </b-input-group>
 
-    <slot :lockers="data.lockers" />
+    <slot :lockers="state.lockers" :reload="getLockers" />
   </div>
 </template>
 
@@ -28,12 +28,13 @@ interface Locker {
   height: number,
   depth: number,
   userId: string,
-  bookedByMe: boolean,
-  bookedByOthers: boolean
+  notAvailable: boolean
 }
 
 let searchText = '';
-let data = reactive<{lockers?: Locker[]}>({});
+let state = reactive<{
+  lockers?: Locker[]
+}>({});
 
 
 onMounted(() => {
@@ -46,18 +47,29 @@ const emits = defineEmits<{
 
 async function getLockers() {
   try {
+    // for (let i = 0; i < 5; i++) {
+    //   axiosInstance.post('/lockers', {
+    //     name: 'Wow ' + i,
+    //     latitude: 10,
+    //     longitude: 10,
+    //     width: 10,
+    //     height: 10,
+    //     depth: 10,
+    //   }).then()
+    // }
+
     const response = await axiosInstance.get('/lockers', {
       params: {
         name: searchText
       }
     })
-    data.lockers = response.data;
+    state.lockers = response.data;
   } catch (ignored) {}
 }
 
 function btnClick () {
   getLockers();
-  emits('click', data.lockers);
+  emits('click', state.lockers);
 }
 
 </script>

@@ -9,6 +9,7 @@ import AppLayout from "@/components/AppLayout.vue";
 import {useAuthStore} from "@/stores/auth";
 import type {StateTree} from "pinia";
 import {onMounted} from "vue";
+import NavBar from "@/components/NavBar.vue";
 
 onMounted(() => {
   const auth = useAuthStore();

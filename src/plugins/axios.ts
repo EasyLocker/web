@@ -18,13 +18,16 @@ const axiosInstance = axios.create({
   baseURL
 })
 
-let authStore;
+let authStore: ReturnType<typeof useAuthStore>;
 
 axiosInstance.interceptors.request.use(config => {
   authStore = authStore || useAuthStore(); // Cache the store
   const token = authStore.token;
 
   if (token) {
+    // TODO: is it fixable?
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     config.headers.common['Authorization'] = `Bearer ${token}`;
   }
 
@@ -63,8 +66,8 @@ axiosInstance.interceptors.response.use(
         })
       }
     } else {
-      console.log(error.response)
-      showError(error.response.data.message || 'C\'è stato un errore inaspettato, ci scusiamo per l\'inconveniente!')
+      if (!error.response.data) console.log(error)
+      showError(error.response.data?.message || 'C\'è stato un errore inaspettato, ci scusiamo per l\'inconveniente!')
     }
 
     return Promise.reject(error)

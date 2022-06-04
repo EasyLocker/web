@@ -2,23 +2,33 @@
   <div class="mx-3 mx-md-5 my-2">
     <div class="card home-button w-100">
       <div class="p-2">
-        <b-button class="float-end">Book</b-button>
-        <div class="font-1 ms-3">{{name}}</div>
+        <b-button class="float-end" @click.stop="onClick" :disabled="disabled">{{ props.buttonText }}</b-button>
+        <div class="font-1 ms-3">{{props.name}}</div>
         <div class="font-2 ms-3">Via Stazione</div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts" setup>
 import {BButton} from "bootstrap-vue-3";
-export default {
-  name: "LockerButton",
-  components: {BButton},
-  props: {
-    name: String
-  }
+
+const emits = defineEmits<{
+  (e: 'click'): void
+}>();
+
+const props = defineProps<{
+  name: string,
+  notReq?: number,
+  lockerId: string,
+  buttonText: string,
+  disabled?: boolean
+}>();
+
+function onClick() {
+  if (!props.disabled) emits('click')
 }
+
 </script>
 
 <style scoped>

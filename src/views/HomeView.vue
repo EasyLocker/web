@@ -21,32 +21,12 @@
 <script setup lang="ts">
 import {useAuthStore} from "@/stores/auth";
 import HomeButton from "@/components/HomeButton.vue";
-import {BButton} from "bootstrap-vue-3";
 import ViewLayout from "@/components/ViewLayout.vue";
-import IconDocumentation from "@/components/old_components/icons/IconDocumentation.vue";
 
 const auth = useAuthStore();
 </script>
 
-<style>
-
-.books-buttons {
-  width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-  padding-right: 20px; /* Increase/decrease this value for cross-browser compatibility */
-  box-sizing: content-box; /* So the width will be 100% + 17px */
-}
-
-.font-1 {
-  font-family: "Adobe Caslon Pro";
-}
-
-.pre-sbl-button {
-  border-radius: 16px;
-  background: indianred;
-}
-
+<style scoped>
 </style>
 
 

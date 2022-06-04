@@ -6,22 +6,13 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppLayout: typeof import('./src/components/AppLayout.vue')['default']
-    ButtonHome: typeof import('./src/components/Button-home.vue')['default']
-    HelloWorld: typeof import('./src/components/old_components/HelloWorld.vue')['default']
     HomeButton: typeof import('./src/components/HomeButton.vue')['default']
-    IconCommunity: typeof import('./src/components/old_components/icons/IconCommunity.vue')['default']
-    IconDocumentation: typeof import('./src/components/old_components/icons/IconDocumentation.vue')['default']
-    IconEcosystem: typeof import('./src/components/old_components/icons/IconEcosystem.vue')['default']
-    IconSupport: typeof import('./src/components/old_components/icons/IconSupport.vue')['default']
-    IconTooling: typeof import('./src/components/old_components/icons/IconTooling.vue')['default']
     LockerButton: typeof import('./src/components/LockerButton.vue')['default']
     LockerSearchLayout: typeof import('./src/components/LockerSearchLayout.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TheWelcome: typeof import('./src/components/old_components/TheWelcome.vue')['default']
     ViewLayout: typeof import('./src/components/ViewLayout.vue')['default']
-    WelcomeItem: typeof import('./src/components/old_components/WelcomeItem.vue')['default']
   }
 }
 

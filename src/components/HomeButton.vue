@@ -2,20 +2,19 @@
   <div class="mx-3 mx-md-5 my-2">
     <div class="card home-button w-100">
       <div class="p-2">
-        <div class="font-1 ms-3">{{name}}</div>
+        <div class="font-1 ms-3">{{props.name}}</div>
         <div class="font-2 ms-3">Prenotato alle 11:28 del 6/5/2022</div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "HomeButton",
-  props: {
-    name: String
-  }
-}
+<script lang="ts" setup>
+
+const props = defineProps<{
+  name?: string
+}>()
+
 </script>
 
 <style scoped>

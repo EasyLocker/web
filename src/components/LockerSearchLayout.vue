@@ -18,18 +18,7 @@
 import {onMounted, reactive} from "vue";
 import axiosInstance from "@/plugins/axios";
 import {BButton, BFormInput, BInputGroup} from "bootstrap-vue-3";
-
-interface Locker {
-  _id: string,
-  name: string,
-  latitude: number,
-  longitude: number,
-  width: number,
-  height: number,
-  depth: number,
-  userId: string,
-  notAvailable: boolean
-}
+import type Locker from "@/models/Locker";
 
 let searchText = '';
 let state = reactive<{

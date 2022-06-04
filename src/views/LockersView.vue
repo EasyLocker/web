@@ -36,8 +36,9 @@ import axiosInstance from "@/plugins/axios";
 import LockerSearchLayout from "@/components/LockerSearchLayout.vue";
 import LockerButton from "@/components/LockerButton.vue";
 import {onMounted, reactive} from "vue";
+import type BookedLocker from "@/models/BookedLocker";
 
-let state = reactive<{bookedLockers?: []}>({});
+let state = reactive<{bookedLockers?: BookedLocker[]}>({});
 
 
 onMounted(() => {

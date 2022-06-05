@@ -12,6 +12,7 @@
             :locker-id="locker.id"
             button-text="Cancella prenotazione"
             @click="cancelBookingLocker(locker.id, locker.name, reload)"
+            :date="locker.bookedAt"
         />
         <h3 class="mt-4">Lockers disponibili</h3>
         <p class="text-black-50" v-if="!lockers?.length">Nessun locker disponibile</p>
@@ -37,6 +38,9 @@ import LockerSearchLayout from "@/components/LockerSearchLayout.vue";
 import LockerButton from "@/components/LockerButton.vue";
 import {onMounted, reactive} from "vue";
 import type BookedLocker from "@/models/BookedLocker";
+import {useToast} from "bootstrap-vue-3";
+
+const toast = useToast();
 
 let state = reactive<{bookedLockers?: BookedLocker[]}>({});
 
@@ -59,8 +63,9 @@ async function cancelBookingLocker(lockerId: string, lockerName: string, reload:
   } catch (err) {
   }
 
-  // TODO: Change alert in toast
-  // alert("Prenotazione locker " + lockerName + " annullata.");
+  toast?.warning({
+    title: "Prenotazione locker " + lockerName + " annullata."
+  })
 
   setTimeout(() => {
     loadBookedLockers();
@@ -76,8 +81,9 @@ async function bookLocker(lockerId: string, lockerName: string, reload: () => vo
   } catch (err) {
   }
 
-  // TODO: Change alert in toast
-  // alert("Locker " + lockerName + " prenotato!");
+  toast?.success({
+    title: "Locker " + lockerName + " prenotato!"
+  })
 
   setTimeout(() => {
     loadBookedLockers();

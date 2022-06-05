@@ -20,7 +20,9 @@ import axiosInstance from "@/plugins/axios";
 import {BButton, BFormInput, BInputGroup} from "bootstrap-vue-3";
 import type Locker from "@/models/Locker";
 
+
 let searchText = '';
+
 let state = reactive<{
   lockers?: Locker[]
 }>({});

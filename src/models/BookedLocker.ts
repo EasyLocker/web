@@ -6,5 +6,6 @@ export default interface BookedLocker {
   width: number,
   height: number,
   depth: number,
-  userId: string
+  userId: string,
+  bookedAt: string
 }

@@ -9,7 +9,7 @@
           {{ props.buttonText }}
         </b-button>
         <div class="font-1 ms-3">{{props.name}}</div>
-        <div class="font-2 ms-3">Via Stazione</div>
+        <div class="font-2 ms-3" v-if="props.date">Prenotato il:  {{props.date}}</div>
       </div>
     </div>
   </div>
@@ -27,10 +27,12 @@ const props = defineProps<{
   notReq?: number,
   lockerId: string,
   buttonText?: string,
-  disabled?: boolean
+  disabled?: boolean,
+  date: string
 }>();
 
 function onClick() {
+  console.log(props.date);
   if (!props.disabled) emits('click')
 }
 

@@ -6,7 +6,7 @@
     <b-button class="button" >Crea (old)</b-button>
   </div>
 
-  <LockerButton v-for="locker in lockers" v-bind:key="locker.id" :name="locker.name"></LockerButton>
+  <LockerButton v-for="locker in lockers" v-bind:key="locker.id" :locker-id="locker.id" :name="locker.name"></LockerButton>
 
 
 </ViewLayout>
@@ -17,10 +17,11 @@ import {defineComponent} from "vue";
 import {BButton} from "bootstrap-vue-3";
 import axiosInstance from "@/plugins/axios";
 import ViewLayout from "@/components/ViewLayout.vue";
+import LockerButton from "@/components/LockerButton.vue";
 
 export default defineComponent({
   name: "LockersManagementView",
-  components: {ViewLayout, BButton},
+  components: {LockerButton, ViewLayout, BButton},
 
   data () {
     return {
@@ -49,10 +50,8 @@ export default defineComponent({
             name: this.data.name
           }
         })
-        console.log(response);
         this.lockers = response.data;
       } catch (err) {
-        console.log(err);
       }
     }
   }

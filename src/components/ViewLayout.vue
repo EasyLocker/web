@@ -79,4 +79,10 @@ $height: calc(95vh - 56px);
 .font{
   font-family: "Adobe Caslon Pro";
 }
+
+.pre-sbl-button {
+  border-radius: 16px;
+  background: indianred;
+}
+
 </style>

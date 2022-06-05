@@ -2,7 +2,12 @@
   <div class="mx-3 mx-md-5 my-2">
     <div class="card home-button w-100">
       <div class="p-2">
-        <b-button class="float-end" @click.stop="onClick" :disabled="disabled">{{ props.buttonText }}</b-button>
+        <b-button v-if="props.buttonText"
+                  class="float-end"
+                  @click.stop="onClick"
+                  :disabled="disabled">
+          {{ props.buttonText }}
+        </b-button>
         <div class="font-1 ms-3">{{props.name}}</div>
         <div class="font-2 ms-3">Via Stazione</div>
       </div>
@@ -21,7 +26,7 @@ const props = defineProps<{
   name: string,
   notReq?: number,
   lockerId: string,
-  buttonText: string,
+  buttonText?: string,
   disabled?: boolean
 }>();
 

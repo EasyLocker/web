@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-import {BootstrapVue3} from "bootstrap-vue-3";
+import {BootstrapVue3, BToastPlugin} from "bootstrap-vue-3";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import App from "./App.vue";
@@ -15,6 +15,7 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 app.use(BootstrapVue3);
-app.component('font-awesome-icon', FontAwesomeIcon);
+app.use(BToastPlugin);
+app.component('font-awesome-icon', FontAwesomeIcon)
 
 app.mount("#app");

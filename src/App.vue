@@ -1,15 +1,17 @@
 <template>
+  <b-container :toast="{root: true}" fluid="sm" position="position-fixed"></b-container>
+
   <AppLayout/>
 
   <NavBar/>
 </template>
 
 <script setup lang="ts">
-import AppLayout from "@/components/AppLayout.vue";
 import {useAuthStore} from "@/stores/auth";
 import type {StateTree} from "pinia";
 import {onMounted} from "vue";
 import NavBar from "@/components/NavBar.vue";
+import AppLayout from "@/components/AppLayout.vue";
 
 onMounted(() => {
   const auth = useAuthStore();

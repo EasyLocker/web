@@ -16,6 +16,11 @@
             <RouterLink class="nav-link" to="/lockers">Lista armadietti</RouterLink>
           </li>
 
+          <!-- DA METTERE SOLO PER GLI ADMIN -->
+          <li class="nav-item" v-if="auth.isLogged">
+            <RouterLink class="nav-link" to="/lockersManagement">Gestione Armadietti</RouterLink>
+          </li>
+
           <li class="nav-item" v-if="auth.isLogged">
             <span class="nav-link" @click="auth.logout()">Logout</span>
           </li>

@@ -1,5 +1,5 @@
 <template>
-    <div class="w-100 bg-easylocker font" :style="`background-image: url(${background})`">
+  <div class="w-100 bg-easylocker overflow-hidden" :style="`background-image: url(${props.background})`">
 
       <div class="title-font mt-5 mb-4 text-center">
         <h1>EasyLocker</h1>
@@ -8,7 +8,7 @@
 
       <div>
         <div>
-          <h2 class="font mx-2 mx-sm-4">{{ title }}</h2>
+          <h2 class="font mx-2 mx-sm-4">{{ props.title }}</h2>
         </div>
 
         <div class="w-100 overflow-hidden my-3">
@@ -19,11 +19,17 @@
           </div>
         </div>
 
-        <div class="text-center">
-          <slot name="buttons">
-            <b-button v-for="(txt, i) in buttons" v-bind:key="i" variant="success" class="pre-sbl-button mx-3">{{ txt }}</b-button>
-          </slot>
-        </div>
+      <div class="text-center">
+        <slot name="buttons">
+          <b-button v-for="(btnProps, i) in props.buttons"
+                    v-bind:key="i"
+                    variant="success"
+                    class="pre-sbl-button mx-3"
+                    @click="btnProps.action">
+            {{ btnProps.text }}
+          </b-button>
+        </slot>
+      </div>
 
 
         <!--<div>
@@ -36,16 +42,18 @@
     </div>
 </template>
 
-<script lang="ts">
-import {defineComponent} from "vue";
+<script lang="ts" setup>
+import {BButton} from "bootstrap-vue-3";
 
-export default defineComponent({
-  props: {
-    title: String,
-    background: String,
-    buttons: Array
-  }
-})
+const props = defineProps<{
+  title: string,
+  background: string,
+  buttons?: {
+    text: string,
+    action: () => void
+  }[]
+}>();
+
 </script>
 
 <style scoped lang="scss">

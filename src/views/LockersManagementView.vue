@@ -1,12 +1,12 @@
 <template>
-<ViewLayout title="Gestione armadietti" background="../../immagini/bkge_verde.jpg" :buttons="['Crea']">
+<ViewLayout title="Gestione armadietti" background="../../immagini/bkge_verde.jpg" :buttons="buttons">
 <!--  <h2 class="font mx-4"></h2>-->
 
-<!--  <div class="text-center">-->
-<!--    <b-button href="/createLocker" class="button" >Crea</b-button>-->
-<!--  </div>-->
+  <div class="text-center">
+    <b-button class="button" >Crea (old)</b-button>
+  </div>
 
-  <LockerButton v-for="locker in lockers" v-bind:key="locker._id" :name="locker.name"></LockerButton>
+  <LockerButton v-for="locker in lockers" v-bind:key="locker.id" :name="locker.name"></LockerButton>
 
 
 </ViewLayout>
@@ -27,7 +27,15 @@ export default defineComponent({
       lockers: null,
       data: {
         name: ''
-      }
+      },
+      buttons: [
+        {
+          text: 'Crea',
+          action: () => {
+            this.$router.push('/createLocker');
+          }
+        }
+      ]
     }
   },
   mounted() {

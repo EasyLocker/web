@@ -1,6 +1,6 @@
 <template>
 
-  <ViewLayout title="Le tue prenotazioni" :buttons="['Prenota', 'Sblocca']" background="../../immagini/bkgr_rosa.jpg">
+  <ViewLayout title="Le tue prenotazioni" :buttons="buttons" background="../../immagini/bkgr_rosa.jpg">
     <template v-slot:subtitle>
       <div>
         <h3>
@@ -26,6 +26,21 @@ import ViewLayout from "@/components/ViewLayout.vue";
 import IconDocumentation from "@/components/old_components/icons/IconDocumentation.vue";
 
 const auth = useAuthStore();
+
+const buttons = [
+{
+    text: 'Prenota',
+    action: () => {
+      console.log('Prenota');
+    }
+  },
+  {
+    text: 'Sblocca',
+    action: () => {
+      console.log('Sblocca');
+    }
+  }
+];
 </script>
 
 <style scoped>

@@ -31,7 +31,9 @@
         <b-form-input v-model="locker.depth"/>
       </div>
 
-      <b-button class="float-end button" @click.prevent="createLocker">Crea</b-button>
+      <b-button class="float-end button" variant="success" @click.prevent="onClick">
+        {{isEditing ? 'Modifica' : 'Crea'}}
+      </b-button>
     </b-form>
   </ViewLayout>
 </template>
@@ -41,19 +43,51 @@ import {BButton, BForm, BFormInput} from "bootstrap-vue-3";
 import {useAuthStore} from "@/stores/auth";
 import {useToast} from 'bootstrap-vue-3';
 import axiosInstance from "@/plugins/axios";
-import {useRouter} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
+import {onMounted, reactive} from "vue";
+import ViewLayout from "@/components/ViewLayout.vue";
 
-const auth = useAuthStore();
 const toast = useToast();
 const router = useRouter();
+const route = useRoute();
 
-const locker = {
+const isEditing = route.params.id !== undefined;
+const locker = reactive({
   name: '',
   latitude: '',
   longitude: '',
   width: '',
   height: '',
   depth: '',
+});
+
+
+onMounted(() => {
+  if (isEditing) getLockerById();
+})
+
+async function getLockerById() {
+  try {
+    const response = await axiosInstance.get('/lockers/' + route.params.id);
+    const data = response.data[0];
+
+    locker.name = data.name;
+    locker.latitude = data.latitude;
+    locker.longitude = data.longitude;
+    locker.width = data.width;
+    locker.height = data.height;
+    locker.depth = data.depth;
+  } catch (ignored) {
+  }
+}
+
+
+function onClick() {
+  if (isEditing) {
+    updateLocker();
+  } else {
+    createLocker();
+  }
 }
 
 async function createLocker() {
@@ -63,10 +97,19 @@ async function createLocker() {
     toast?.success({
       title: 'Armadietto registrato correttamente'
     })
-    await router.push('lockersManagement')
   } catch (e) {
     console.log(e);
   }
+  await router.push('/lockersManagement')
+}
+
+function updateLocker() {
+  axiosInstance.put('/lockers/' + route.params.id, locker).then(() => {
+    toast?.success({
+      title: 'Armadietto modificato con successo'
+    });
+    router.push('/lockersManagement')
+  }).catch();
 }
 
 </script>

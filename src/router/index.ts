@@ -75,7 +75,12 @@ const router = createRouter({
       component: CreateLockerView,
       beforeEnter
     },
-
+    {
+      path: '/createLocker/:id',
+      name: 'editLocker',
+      component: CreateLockerView,
+      beforeEnter
+    },
     {
       path: '/lockersManagement',
       name: 'lockersManagement',

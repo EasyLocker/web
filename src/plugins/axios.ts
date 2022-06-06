@@ -1,8 +1,9 @@
 import axios from 'axios'
 import {useAuthStore} from '@/stores/auth'
+import type {useToast} from "bootstrap-vue-3";
 
 // ---------------- Use localhost setting ----------------
-const useApiLocalhostUrl = false
+const useApiLocalhostUrl = true
 
 const isLocalhost = location.hostname === 'localhost'
 const isDev = location.hostname === 'easylocker-staging.herokuapp.com'
@@ -35,7 +36,17 @@ axiosInstance.interceptors.request.use(config => {
   return Promise.reject(error);
 });
 
+let toast: ReturnType<typeof useToast>;
+
 function showError (text: string, callback?: () => void) {
+  // FIXME: useToast is not working
+  // toast = toast || useToast();
+
+  toast?.danger({
+    title: 'Errore nella modifica dell\'armadietto',
+    body: text,
+  }) || alert(text);
+
   alert(text)
   if (callback) callback()
 }

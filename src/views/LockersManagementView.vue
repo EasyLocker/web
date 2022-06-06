@@ -18,6 +18,7 @@ import {BButton} from "bootstrap-vue-3";
 import axiosInstance from "@/plugins/axios";
 import ViewLayout from "@/components/ViewLayout.vue";
 import LockerButton from "@/components/LockerButton.vue";
+import type Locker from "@/models/Locker";
 
 export default defineComponent({
   name: "LockersManagementView",
@@ -25,7 +26,7 @@ export default defineComponent({
 
   data () {
     return {
-      lockers: null,
+      lockers: null as Locker[] | null,
       data: {
         name: ''
       },

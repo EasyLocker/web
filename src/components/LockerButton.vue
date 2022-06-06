@@ -28,11 +28,10 @@ const props = defineProps<{
   lockerId: string,
   buttonText?: string,
   disabled?: boolean,
-  date: string
+  date?: string
 }>();
 
 function onClick() {
-  console.log(props.date);
   if (!props.disabled) emits('click')
 }
 

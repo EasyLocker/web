@@ -22,8 +22,6 @@ function beforeEnter(to: any, from: any, next: any) {
   }
 }
 
-// @ts-ignore
-// @ts-ignore
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [

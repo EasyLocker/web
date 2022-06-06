@@ -1,13 +1,21 @@
 <template>
 <ViewLayout title="Gestione armadietti" background="../../immagini/bkge_verde.jpg" :buttons="buttons">
-<!--  <h2 class="font mx-4"></h2>-->
 
-  <div class="text-center">
-    <b-button class="button" >Crea (old)</b-button>
-  </div>
-
-  <LockerButton v-for="locker in lockers" v-bind:key="locker.id" :locker-id="locker.id" :name="locker.name"></LockerButton>
-
+  <LockerButton
+      v-for="locker in lockers"
+      v-bind:key="locker.id"
+      :locker-id="locker.id"
+      :name="locker.name"
+  >
+    <template v-slot:buttons>
+      <b-button variant="warning" pill class="me-2">
+        <font-awesome-icon icon="pen-to-square"/>
+      </b-button>
+      <b-button variant="danger" pill>
+        <font-awesome-icon icon="trash"/>
+      </b-button>
+    </template>
+  </LockerButton>
 
 </ViewLayout>
 </template>
@@ -20,9 +28,11 @@ import ViewLayout from "@/components/ViewLayout.vue";
 import LockerButton from "@/components/LockerButton.vue";
 import type Locker from "@/models/Locker";
 
+// Color to use in this page for buttons: #91FCAC
+
 export default defineComponent({
   name: "LockersManagementView",
-  components: {LockerButton, ViewLayout, BButton},
+  components: {BButton, LockerButton, ViewLayout},
 
   data () {
     return {
@@ -62,15 +72,5 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-
-.button{
-  color: black;
-  background-color: #91FCAC;
-  @extend .font;
-}
-
-.font{
-  font-family: "Adobe Caslon Pro";
-}
 
 </style>

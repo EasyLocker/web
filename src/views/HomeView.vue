@@ -8,20 +8,32 @@
       </div>
     </template>
 
-    <HomeButton name="ciaooo"></HomeButton>
-    <HomeButton name="ciaooo"></HomeButton>
-    <HomeButton name="ciaooo"></HomeButton>
-    <HomeButton name="ciaooo"></HomeButton>
-    <HomeButton name="ciaooo"></HomeButton>
+    <p class="text-black-50" v-if="!state.bookedLockers?.length">Nessun locker prenotato</p>
+    <LockerButton
+        v-else
+        v-for="locker in state.bookedLockers"
+        v-bind:key="locker.id"
+        :name="locker.name"
+        :locker-id="locker.id"
+        button-text="Cancella prenotazione"
+        @click="cancelBookingLocker(locker.id, locker.name)"
+        :date="locker.bookedAt"
+    />
   </ViewLayout>
 </template>
 
 <script setup lang="ts">
 import {useAuthStore} from "@/stores/auth";
-import HomeButton from "@/components/HomeButton.vue";
 import ViewLayout from "@/components/ViewLayout.vue";
+import LockerButton from "@/components/LockerButton.vue";
+import {onMounted, reactive} from "vue";
+import type BookedLocker from "@/models/BookedLocker";
+import axiosInstance from "@/plugins/axios";
+import {useToast} from "bootstrap-vue-3";
 
 const auth = useAuthStore();
+const toast = useToast();
+let state = reactive<{bookedLockers?: BookedLocker[]}>({});
 
 const buttons = [
   {
@@ -37,14 +49,36 @@ const buttons = [
     }
   }
 ];
+
+
+onMounted(() => {
+  loadBookedLockers();
+})
+
+
+async function loadBookedLockers() {
+  const response = await axiosInstance.get('/lockers/booked')
+  state.bookedLockers = response.data;
+}
+
+async function cancelBookingLocker(lockerId: string, lockerName: string) {
+  try {
+    await axiosInstance.patch('/lockers/cancel', {
+      id: lockerId
+    })
+  } catch (err) {
+  }
+
+  toast?.warning({
+    title: "Prenotazione locker " + lockerName + " annullata."
+  })
+
+  await loadBookedLockers();
+}
+
 </script>
 
 <style scoped>
-
-.font-1 {
-  font-family: "Adobe Caslon Pro";
-}
-
 </style>
 
 

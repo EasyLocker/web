@@ -23,7 +23,10 @@ onMounted(() => {
 </script>
 
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@1,300&family=Carter+One&family=Ubuntu:wght@300&display=swap');
+
+.el-font{
+  font-family: "Adobe Caslon Pro";
+}
 
 </style>

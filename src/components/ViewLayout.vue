@@ -1,45 +1,47 @@
 <template>
-  <div class="w-100 bg-easylocker overflow-hidden" :style="`background-image: url(${props.background})`">
+  <div class="w-100 layout-container d-flex flex-column" :style="`background-image: url(${props.background})`">
 
-      <div class="title-font mt-5 mb-4 text-center">
-        <h1>EasyLocker</h1>
-        <slot name="subtitle"></slot>
-      </div>
+    <div class="el-font pt-5 pb-4 text-center flex-grow-0">
+      <h1>EasyLocker</h1>
+      <slot name="subtitle"></slot>
+    </div>
 
-      <div>
-        <div>
-          <h2 class="font mx-2 mx-sm-4">{{ props.title }}</h2>
+    <div class="flex-grow-0">
+      <h2 class="el-font mx-2 mx-sm-4">{{ props.title }}</h2>
+    </div>
+
+    <!--      <div class="w-100 my-3  ">-->
+    <div class="flex-grow-1 position-relative">
+      <div class="content-container">
+        <div class="mx-2 mx-sm-4">
+          <slot/>
         </div>
-
-        <div class="w-100 overflow-hidden my-3">
-          <div class="content">
-            <div class="mx-2 mx-sm-4">
-              <slot/>
-            </div>
-          </div>
-        </div>
-
-      <div class="text-center">
-        <slot name="buttons">
-          <b-button v-for="(btnProps, i) in props.buttons"
-                    v-bind:key="i"
-                    variant="success"
-                    class="pre-sbl-button mx-3"
-                    @click="btnProps.action">
-            {{ btnProps.text }}
-          </b-button>
-        </slot>
-      </div>
-
-
-        <!--<div>
-          <img src="../../immagini/bkgr_rosa.jpg" alt="background_pink">
-        </div
-
-         <div :style="{backgroundImage: '../../immagini/bkgr_rosa.jpg'}">
-         </div>-->
       </div>
     </div>
+    <!--      </div>-->
+
+    <div class="text-center flex-grow-0 mt-4 mb-5">
+      <slot name="buttons">
+        <b-button v-for="(btnProps, i) in props.buttons"
+                  v-bind:key="i"
+                  variant="secondary"
+                  pill
+                  size="lg"
+                  class="el-button mx-3 el-font"
+                  @click="btnProps.action">
+          {{ btnProps.text }}
+        </b-button>
+      </slot>
+    </div>
+
+
+    <!--<div>
+      <img src="../../immagini/bkgr_rosa.jpg" alt="background_pink">
+    </div
+
+     <div :style="{backgroundImage: '../../immagini/bkgr_rosa.jpg'}">
+     </div>-->
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -57,32 +59,36 @@ const props = defineProps<{
 </script>
 
 <style scoped lang="scss">
-$height: calc(95vh - 56px);
+$navbar-height: 56px;
+$height: calc(100vh - #{$navbar-height});
+$buttons-margin-bottom: calc(#{$navbar-height} + 50px);
 
-.bg-easylocker {
+.layout-container {
   height: $height;
   background-size: cover;
   background-position: center;
 }
 
-.content {
+.content-container {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+
   //width: 100%;
-  height: 65vh;
-  overflow-y: scroll;
+  height: 100%;
+  overflow-y: auto;
   margin-right: -17px;
-  //padding-right: -20px; /* Increase/decrease this value for cross-browser compatibility */
-  //box-sizing: content-box; /* So the width will be 100% + 17px */
-  //-moz-box-sizing: content-box;
-  //-webkit-box-sizing: content-box;
+  padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
+  box-sizing: content-box; /* So the width will be 100% + 17px */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
 }
 
-.font{
+.buttons-container {
+  margin-bottom: $buttons-margin-bottom;
+}
+
+.el-font {
   font-family: "Adobe Caslon Pro";
-}
-
-.pre-sbl-button {
-  border-radius: 16px;
-  background: indianred;
 }
 
 </style>

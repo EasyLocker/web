@@ -2,7 +2,7 @@ import axios from 'axios'
 import {useAuthStore} from '@/stores/auth'
 
 // ---------------- Use localhost setting ----------------
-const useApiLocalhostUrl = true
+const useApiLocalhostUrl = false
 
 const isLocalhost = location.hostname === 'localhost'
 const isDev = location.hostname === 'easylocker-staging.herokuapp.com'
@@ -25,7 +25,6 @@ axiosInstance.interceptors.request.use(config => {
   const token = authStore.token;
 
   if (token) {
-    // TODO: is it fixable?
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     config.headers.common['Authorization'] = `Bearer ${token}`;

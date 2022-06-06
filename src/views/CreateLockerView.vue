@@ -1,32 +1,32 @@
 <template>
   <ViewLayout title="Crea Armadietti" background="../../immagini/bkge_verde.jpg">
     <b-form>
-      <div class="mb-2 font">
+      <div class="mb-2 el-font">
         <span>Nome</span>
         <b-form-input required v-model="locker.name"/>
       </div>
 
-      <div class="mb-2 font">
+      <div class="mb-2 el-font">
         <span>Latitudine</span>
         <b-form-input v-model="locker.latitude"/>
       </div>
 
-      <div class="mb-2 font">
+      <div class="mb-2 el-font">
         <span>Longitudine</span>
         <b-form-input v-model="locker.longitude"/>
       </div>
 
-      <div class="mb-2 font">
+      <div class="mb-2 el-font">
         <span>Larghezza</span>
         <b-form-input v-model="locker.width"/>
       </div>
 
-      <div class="mb-2 font">
+      <div class="mb-2 el-font">
         <span>Altezza</span>
         <b-form-input v-model="locker.height"/>
       </div>
 
-      <div class="mb-2 font">
+      <div class="mb-2 el-font">
         <span>Profondità</span>
         <b-form-input v-model="locker.depth"/>
       </div>
@@ -82,7 +82,7 @@ async function createLocker() {
   background-color: #E4FFEC;
 }
 
-.font {
+.el-font {
   font-family: "Adobe Caslon Pro";
 }
 

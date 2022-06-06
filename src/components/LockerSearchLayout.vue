@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-input-group prepend="Search">
-      <b-form-input v-model="searchText" @keydown.enter="btnClick"></b-form-input>
+      <b-form-input v-model="state.searchText" @keydown.enter="btnClick"></b-form-input>
       <template #append>
         <b-button variant="primary" @click.stop="btnClick" >
           <font-awesome-icon icon="magnifying-glass" />
@@ -21,11 +21,19 @@ import {BButton, BFormInput, BInputGroup} from "bootstrap-vue-3";
 import type Locker from "@/models/Locker";
 
 
-let searchText = '';
+const props = defineProps({
+  showAll: {
+    type: Boolean,
+    default: false,
+  },
+});
 
 let state = reactive<{
+  searchText: string,
   lockers?: Locker[]
-}>({});
+}>({
+  searchText: ''
+});
 
 
 onMounted(() => {
@@ -49,9 +57,9 @@ async function getLockers() {
     //   }).then()
     // }
 
-    const response = await axiosInstance.get('/lockers', {
+    const response = await axiosInstance.get('/lockers' + (props.showAll ? '' : '/available'), {
       params: {
-        name: searchText
+        name: state.searchText
       }
     })
     state.lockers = response.data;

@@ -1,13 +1,16 @@
 <template>
   <div class="mx-3 mx-md-5 my-2">
-    <div class="card home-button w-100">
+    <div class="card locker-card w-100">
       <div class="p-2">
-        <b-button v-if="props.buttonText"
-                  class="float-end"
-                  @click.stop="onClick"
-                  :disabled="disabled">
-          {{ props.buttonText }}
-        </b-button>
+        <div class="float-end">
+          <slot name="buttons">
+            <b-button v-if="props.buttonText"
+                      @click.stop="onClick"
+                      :disabled="disabled">
+              {{ props.buttonText }}
+            </b-button>
+          </slot>
+        </div>
         <div class="font-1 ms-3">{{props.name}}</div>
         <div class="font-2 ms-3" v-if="props.date">Prenotato il:  {{props.date}}</div>
       </div>
@@ -39,12 +42,10 @@ function onClick() {
 
 <style scoped>
 
-.home-button {
+.locker-card {
   background-color: #87CEFA;
   color: black;
   border-radius: 16px;
-  height: 60px;
-  width: 500px;
 }
 
 .font-1{

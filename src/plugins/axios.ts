@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {useAuthStore} from '@/stores/auth'
+import type {useToast} from "bootstrap-vue-3";
 
 // ---------------- Use localhost setting ----------------
 const useApiLocalhostUrl = true
@@ -25,7 +26,6 @@ axiosInstance.interceptors.request.use(config => {
   const token = authStore.token;
 
   if (token) {
-    // TODO: is it fixable?
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     config.headers.common['Authorization'] = `Bearer ${token}`;
@@ -36,7 +36,17 @@ axiosInstance.interceptors.request.use(config => {
   return Promise.reject(error);
 });
 
+let toast: ReturnType<typeof useToast>;
+
 function showError (text: string, callback?: () => void) {
+  // FIXME: useToast is not working
+  // toast = toast || useToast();
+
+  toast?.danger({
+    title: 'Errore nella modifica dell\'armadietto',
+    body: text,
+  }) || alert(text);
+
   alert(text)
   if (callback) callback()
 }

@@ -1,14 +1,24 @@
 <template>
 <ViewLayout title="Gestione armadietti" background="../../immagini/bkge_verde.jpg" :buttons="buttons">
-<!--  <h2 class="font mx-4"></h2>-->
-
-  <div class="text-center">
-    <b-button class="button" >Crea (old)</b-button>
-  </div>
-
-  <LockerButton v-for="locker in lockers" v-bind:key="locker.id" :locker-id="locker.id" :name="locker.name"></LockerButton>
-
-
+  <locker-search-layout show-all>
+    <template #default="{lockers, reload}">
+      <LockerButton
+          v-for="locker in lockers"
+          v-bind:key="locker.id"
+          :locker-id="locker.id"
+          :name="locker.name"
+      >
+        <template v-slot:buttons>
+          <b-button variant="warning" pill class="me-2">
+            <font-awesome-icon icon="pen-to-square" @click="editLocker(locker.id)"/>
+          </b-button>
+          <b-button variant="danger" pill @click="deleteLocker(locker, reload)">
+            <font-awesome-icon icon="trash"/>
+          </b-button>
+        </template>
+      </LockerButton>
+    </template>
+  </locker-search-layout>
 </ViewLayout>
 </template>
 
@@ -19,10 +29,13 @@ import axiosInstance from "@/plugins/axios";
 import ViewLayout from "@/components/ViewLayout.vue";
 import LockerButton from "@/components/LockerButton.vue";
 import type Locker from "@/models/Locker";
+import LockerSearchLayout from "@/components/LockerSearchLayout.vue";
+
+// Color to use in this page for buttons: #91FCAC
 
 export default defineComponent({
   name: "LockersManagementView",
-  components: {LockerButton, ViewLayout, BButton},
+  components: {LockerSearchLayout, BButton, LockerButton, ViewLayout},
 
   data () {
     return {
@@ -40,37 +53,32 @@ export default defineComponent({
       ]
     }
   },
-  mounted() {
-    this.getLockers();
-  },
   methods: {
-    async getLockers () {
+    editLocker(lockerId: string) {
+      this.$router.push({
+        name: 'editLocker',
+        params: {
+          id: lockerId
+        }
+      })
+    },
+    async deleteLocker(locker: Locker, reload: () => void) {
       try {
-        const response = await axiosInstance.get('/lockers', {
-          params: {
-            name: this.data.name
+        if (!confirm(`Sei sicuro di voler cancellare l'armadietto "${locker.name}"?`)) return;
+        await axiosInstance.delete('/lockers', {
+          data: {
+            id: locker.id
           }
-        })
-        this.lockers = response.data;
+        });
+        reload();
       } catch (err) {
       }
     }
   }
-
 })
 
 </script>
 
 <style scoped lang="scss">
-
-.button{
-  color: black;
-  background-color: #91FCAC;
-  @extend .font;
-}
-
-.font{
-  font-family: "Adobe Caslon Pro";
-}
 
 </style>

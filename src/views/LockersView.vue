@@ -1,20 +1,7 @@
 <template>
-  <ViewLayout title="Tutti i lockers" background="../../immagini/bkgr_blu.jpg">
+  <ViewLayout title="Armadietti disponibili" background="../../immagini/bkgr_blu.jpg">
     <LockerSearchLayout list-btn-text="Book">
       <template #default="{lockers, reload}">
-        <h3 class="mt-4">Lockers prenotati</h3>
-        <p class="text-black-50" v-if="!state.bookedLockers?.length">Nessun locker prenotato</p>
-        <LockerButton
-            v-else
-            v-for="locker in state.bookedLockers"
-            v-bind:key="locker.id"
-            :name="locker.name"
-            :locker-id="locker.id"
-            button-text="Cancella prenotazione"
-            @click="cancelBookingLocker(locker.id, locker.name, reload)"
-            :date="locker.bookedAt"
-        />
-        <h3 class="mt-4">Lockers disponibili</h3>
         <p class="text-black-50" v-if="!lockers?.length">Nessun locker disponibile</p>
         <LockerButton
             v-else
@@ -42,36 +29,7 @@ import {useToast} from "bootstrap-vue-3";
 
 const toast = useToast();
 
-let state = reactive<{bookedLockers?: BookedLocker[]}>({});
 
-
-onMounted(() => {
-  loadBookedLockers();
-})
-
-
-async function loadBookedLockers() {
-  const response = await axiosInstance.get('/lockers/booked')
-  state.bookedLockers = response.data;
-}
-
-async function cancelBookingLocker(lockerId: string, lockerName: string, reload: () => void) {
-  try {
-    await axiosInstance.patch('/lockers/cancel', {
-      id: lockerId
-    })
-  } catch (err) {
-  }
-
-  toast?.warning({
-    title: "Prenotazione locker " + lockerName + " annullata."
-  })
-
-  setTimeout(() => {
-    loadBookedLockers();
-    reload();
-  }, 100);
-}
 
 async function bookLocker(lockerId: string, lockerName: string, reload: () => void) {
   try {
@@ -84,11 +42,6 @@ async function bookLocker(lockerId: string, lockerName: string, reload: () => vo
   toast?.success({
     title: "Locker " + lockerName + " prenotato!"
   })
-
-  setTimeout(() => {
-    loadBookedLockers();
-    reload();
-  }, 100);
 }
 
 </script>

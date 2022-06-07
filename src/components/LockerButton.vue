@@ -1,6 +1,6 @@
 <template>
   <div class="mx-3 mx-md-5 my-2">
-    <div class="card locker-card w-100">
+    <div class="card locker-card w-100" :style="`background-color: ${props.background}`">
       <div class="p-2">
         <div class="float-end">
           <slot name="buttons">
@@ -31,7 +31,8 @@ const props = defineProps<{
   lockerId: string,
   buttonText?: string,
   disabled?: boolean,
-  date?: string
+  date?: string,
+  background: string
 }>();
 
 function onClick() {
@@ -43,7 +44,7 @@ function onClick() {
 <style scoped>
 
 .locker-card {
-  background-color: #87CEFA;
+  /*background-color: #87CEFA;*/
   color: black;
   border-radius: 16px;
 }

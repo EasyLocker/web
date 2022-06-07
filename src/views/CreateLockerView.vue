@@ -3,32 +3,32 @@
     <b-form>
       <div class="mb-2 el-font">
         <span>Nome</span>
-        <b-form-input required v-model="locker.name"/>
+        <b-form-input required v-model="locker.name" type="string"/>
       </div>
 
       <div class="mb-2 el-font">
         <span>Latitudine</span>
-        <b-form-input v-model="locker.latitude"/>
+        <b-form-input v-model="locker.latitude" type="number"/>
       </div>
 
       <div class="mb-2 el-font">
         <span>Longitudine</span>
-        <b-form-input v-model="locker.longitude"/>
+        <b-form-input v-model="locker.longitude" type="number"/>
       </div>
 
       <div class="mb-2 el-font">
         <span>Larghezza</span>
-        <b-form-input v-model="locker.width"/>
+        <b-form-input v-model="locker.width" type="number"/>
       </div>
 
       <div class="mb-2 el-font">
         <span>Altezza</span>
-        <b-form-input v-model="locker.height"/>
+        <b-form-input v-model="locker.height" type="number"/>
       </div>
 
       <div class="mb-2 el-font">
         <span>Profondità</span>
-        <b-form-input v-model="locker.depth"/>
+        <b-form-input v-model="locker.depth" type="number"/>
       </div>
 
       <b-button class="float-end button" variant="success" @click.prevent="onClick">

@@ -12,6 +12,7 @@
             button-text="Book"
             :disabled="locker.notAvailable"
             @click="bookLocker(locker.id, locker.name, reload)"
+            :background="`#87CEFA`"
         />
       </template>
     </LockerSearchLayout>

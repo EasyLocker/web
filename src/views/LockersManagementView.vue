@@ -7,6 +7,7 @@
           v-bind:key="locker.id"
           :locker-id="locker.id"
           :name="locker.name"
+          :background="`#91FCAC`"
       >
         <template v-slot:buttons>
           <b-button variant="warning" pill class="me-2">

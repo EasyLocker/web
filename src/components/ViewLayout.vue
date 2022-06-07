@@ -29,6 +29,7 @@
                   size="lg"
                   class="el-button mx-3 el-font"
                   @click="btnProps.action">
+
           {{ btnProps.text }}
         </b-button>
       </slot>

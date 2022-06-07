@@ -16,7 +16,9 @@ import AppLayout from "@/components/AppLayout.vue";
 onMounted(() => {
   const auth = useAuthStore();
   auth.$subscribe((state: StateTree) => {
-    localStorage.setItem("authStore", JSON.stringify(state.events.target));
+    if (state.events?.target) {
+      localStorage.setItem("authStore", JSON.stringify(state.events.target));
+    }
   });
 });
 

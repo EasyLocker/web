@@ -44,7 +44,6 @@ function onClick() {
 <style scoped>
 
 .locker-card {
-  /*background-color: #87CEFA;*/
   color: black;
   border-radius: 16px;
 }

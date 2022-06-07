@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100 layout-container d-flex flex-column" :style="`background-image: url(${props.background})`">
+  <div class="w-100 layout-container d-flex flex-column" :style="style">
 
     <div class="el-font pt-5 pb-4 text-center flex-grow-0">
       <h1>EasyLocker</h1>
@@ -37,16 +37,17 @@
 
 
     <!--<div>
-      <img src="../../immagini/bkgr_rosa.jpg" alt="background_pink">
+      <img src="../../images/bkgr_rosa.jpg" alt="background_pink">
     </div
 
-     <div :style="{backgroundImage: '../../immagini/bkgr_rosa.jpg'}">
+     <div :style="{backgroundImage: '../../images/bkgr_rosa.jpg'}">
      </div>-->
   </div>
 </template>
 
 <script lang="ts" setup>
 import {BButton} from "bootstrap-vue-3";
+import {computed} from "vue";
 
 const props = defineProps<{
   title: string,
@@ -56,6 +57,12 @@ const props = defineProps<{
     action: () => void
   }[]
 }>();
+
+const style = computed(() => {
+  return {
+    backgroundImage: `url(${props.background})`
+  }
+})
 
 </script>
 

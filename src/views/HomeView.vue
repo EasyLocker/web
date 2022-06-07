@@ -1,5 +1,5 @@
 <template>
-  <ViewLayout title="Le tue prenotazioni" :buttons="buttons" background="../../immagini/bkgr_rosa.jpg">
+  <ViewLayout title="Le tue prenotazioni" :buttons="buttons" background="/images/bkgr_rosa.jpg">
     <template v-slot:subtitle>
       <div>
         <h3>
@@ -18,6 +18,7 @@
         button-text="Cancella prenotazione"
         @click="cancelBookingLocker(locker.id, locker.name)"
         :date="locker.bookedAt"
+        background="#F28C9A"
     />
   </ViewLayout>
 </template>

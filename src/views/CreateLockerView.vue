@@ -1,9 +1,9 @@
 <template>
-  <ViewLayout title="Crea Armadietti" background="../../immagini/bkge_verde.jpg">
+  <ViewLayout title="Crea Armadietti" background="/images/bkge_verde.jpg">
     <b-form>
       <div class="mb-2 el-font">
         <span>Nome</span>
-        <b-form-input required v-model="locker.name" type="string"/>
+        <b-form-input required v-model="locker.name"/>
       </div>
 
       <div class="mb-2 el-font">

@@ -1,5 +1,5 @@
 <template>
-  <ViewLayout title="Armadietti disponibili" background="../../immagini/bkgr_blu.jpg">
+  <ViewLayout title="Armadietti disponibili" background="/images/bkgr_blu.jpg">
     <LockerSearchLayout list-btn-text="Book">
       <template #default="{lockers, reload}">
         <p class="text-black-50" v-if="!lockers?.length">Nessun locker disponibile</p>
@@ -12,7 +12,7 @@
             button-text="Book"
             :disabled="locker.notAvailable"
             @click="bookLocker(locker.id, locker.name, reload)"
-            :background="`#87CEFA`"
+            background="#87CEFA"
         />
       </template>
     </LockerSearchLayout>

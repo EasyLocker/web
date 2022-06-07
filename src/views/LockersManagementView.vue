@@ -1,5 +1,5 @@
 <template>
-<ViewLayout title="Gestione armadietti" background="../../immagini/bkge_verde.jpg" :buttons="buttons">
+<ViewLayout title="Gestione armadietti" background="/images/bkge_verde.jpg" :buttons="buttons">
   <locker-search-layout show-all>
     <template #default="{lockers, reload}">
       <LockerButton
@@ -7,7 +7,7 @@
           v-bind:key="locker.id"
           :locker-id="locker.id"
           :name="locker.name"
-          :background="`#91FCAC`"
+          background="#91FCAC"
       >
         <template v-slot:buttons>
           <b-button variant="warning" pill class="me-2">

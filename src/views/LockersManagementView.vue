@@ -31,6 +31,7 @@ import LockerButton from "@/components/LockerButton.vue";
 import type Locker from "@/models/Locker";
 import LockerSearchLayout from "@/components/LockerSearchLayout.vue";
 
+
 // Color to use in this page for buttons: #91FCAC
 
 export default defineComponent({
@@ -65,11 +66,7 @@ export default defineComponent({
     async deleteLocker(locker: Locker, reload: () => void) {
       try {
         if (!confirm(`Sei sicuro di voler cancellare l'armadietto "${locker.name}"?`)) return;
-        await axiosInstance.delete('/lockers', {
-          data: {
-            id: locker.id
-          }
-        });
+        await axiosInstance.delete('/lockers/'+ locker.id);
         reload();
       } catch (err) {
       }

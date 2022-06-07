@@ -88,7 +88,6 @@ const router = createRouter({
             component: LockersManagementView,
             beforeEnter(to, from, next) {
                 const auth = useAuthStore();
-                console.log(auth.isAdmin);
                 if (!auth.isLogged) {
                     redirect(next, '/login');
                 } else if(!auth.isAdmin){

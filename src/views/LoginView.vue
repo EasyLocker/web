@@ -7,16 +7,16 @@
 
       <b-form-group
           id="input-group-1"
-          label="Email address:"
+          label="Indirizzo email:"
           label-for="input-1"
-          description="We'll never share your email with anyone else."
+          description="Non condivideremo mai la tua mail con nessuno..."
       >
         <b-form-input
             @keydown.enter="login"
             id="email"
             v-model="user.email"
             type="email"
-            placeholder="Enter email"
+            placeholder="Email"
             required
         ></b-form-input>
       </b-form-group>
@@ -25,14 +25,14 @@
           id="password"
           label="Password:"
           label-for="input-2"
-          description="Password"
+          description="... e nemmeno la tua passsword"
       >
         <b-form-input
             @keydown.enter="login"
             id="input-1"
             v-model="user.password"
             type="password"
-            placeholder="Enter password"
+            placeholder="Password"
             required
         ></b-form-input>
       </b-form-group>

@@ -22,7 +22,7 @@ export const useAuthStore = defineStore({
       return state.token && state.token !== ''
     },
     isAdmin: (state) => {
-      return state.role === 'admin'
+      return state.role === 'Admin'
     }
   },
   actions: {

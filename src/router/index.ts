@@ -88,15 +88,18 @@ const router = createRouter({
             component: LockersManagementView,
             beforeEnter(to, from, next) {
                 const auth = useAuthStore();
-                if (!auth.isLogged && auth.isAdmin) {
-                    next()
-                } else {
+                console.log(auth.isAdmin);
+                if (!auth.isLogged) {
+                    redirect(next, '/login');
+                } else if(!auth.isAdmin){
                     // const toast = useToast();
                     // toast?.warning({
                     //     title: 'Permission denied'
                     // });
                     alert("Permission denied");
                     redirect(next, '/');
+                }else {
+                    next();
                 }
             }
         }

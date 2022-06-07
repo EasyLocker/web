@@ -3,7 +3,7 @@
     <template v-slot:subtitle>
       <div>
         <h3>
-          Hi {{ auth.name }}
+          Ciao, {{ auth.name }}
         </h3>
       </div>
     </template>

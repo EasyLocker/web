@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-input-group prepend="Search">
+    <b-input-group prepend="Cerca">
       <b-form-input v-model="state.searchText" @keydown.enter="btnClick"></b-form-input>
       <template #append>
         <b-button variant="primary" @click.stop="btnClick" >
@@ -46,16 +46,6 @@ const emits = defineEmits<{
 
 async function getLockers() {
   try {
-    // for (let i = 0; i < 5; i++) {
-    //   axiosInstance.post('/lockers', {
-    //     name: 'Wow ' + i,
-    //     latitude: 10,
-    //     longitude: 10,
-    //     width: 10,
-    //     height: 10,
-    //     depth: 10,
-    //   }).then()
-    // }
 
     const response = await axiosInstance.get('/lockers' + (props.showAll ? '' : '/available'), {
       params: {

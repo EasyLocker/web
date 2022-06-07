@@ -1,15 +1,15 @@
 <template>
   <div class="m-3">
-    <h2>Sign up</h2>
+    <h2>Registrazione</h2>
 
     <b-form>
       <div class="mb-2">
-        <span>Name</span>
+        <span>Nome</span>
         <b-form-input required v-model="user.name" />
       </div>
 
       <div class="mb-2">
-        <span>Surname</span>
+        <span>Cognome</span>
         <b-form-input v-model="user.surname" />
       </div>
 
@@ -19,7 +19,7 @@
       </div>
 
       <div class="mb-2">
-        <span>Confirm email</span>
+        <span>Conferma email</span>
         <b-form-input v-model="emailConfirmation" />
       </div>
 
@@ -29,11 +29,11 @@
       </div>
 
       <div class="mb-2">
-        <span>Confirm password</span>
+        <span>Conferma password</span>
         <b-form-input type="password" v-model="passwordConfirmation" />
       </div>
 
-      <b-button class="float-end" @click.prevent="register">Sign up</b-button>
+      <b-button class="float-end" @click.prevent="register">Registrati</b-button>
     </b-form>
 
   </div>

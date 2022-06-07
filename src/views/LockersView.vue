@@ -1,6 +1,6 @@
 <template>
   <ViewLayout title="Armadietti disponibili" background="/images/bkgr_blu.jpg">
-    <LockerSearchLayout list-btn-text="Book">
+    <LockerSearchLayout>
       <template #default="{lockers, reload}">
         <p class="text-black-50" v-if="!lockers?.length">Nessun locker disponibile</p>
         <LockerButton
@@ -9,7 +9,7 @@
             v-bind:key="locker.id"
             :name="locker.name"
             :locker-id="locker.id"
-            button-text="Book"
+            button-text="Prenota"
             :disabled="locker.notAvailable"
             @click="bookLocker(locker.id, locker.name, reload)"
             background="#87CEFA"

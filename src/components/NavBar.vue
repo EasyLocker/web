@@ -18,7 +18,7 @@
 
           <!-- DA METTERE SOLO PER GLI ADMIN -->
           <li class="nav-item" v-if="auth.isLogged">
-            <RouterLink class="nav-link" to="/lockersManagement">Gestione Armadietti</RouterLink>
+            <RouterLink class="nav-link" to="/lockersManagement" v-if="auth.isAdmin">Gestione Armadietti</RouterLink>
           </li>
 
           <li class="nav-item" v-if="auth.isLogged">

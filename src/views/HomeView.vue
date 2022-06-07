@@ -30,22 +30,19 @@ import {onMounted, reactive} from "vue";
 import type BookedLocker from "@/models/BookedLocker";
 import axiosInstance from "@/plugins/axios";
 import {useToast} from "bootstrap-vue-3";
+import {useRouter} from "vue-router";
+
 
 const auth = useAuthStore();
 const toast = useToast();
+const router = useRouter();
 let state = reactive<{bookedLockers?: BookedLocker[]}>({});
 
 const buttons = [
   {
     text: 'Prenota',
     action: () => {
-      console.log('Prenota');
-    }
-  },
-  {
-    text: 'Sblocca',
-    action: () => {
-      console.log('Sblocca');
+      router.push('/lockers');
     }
   }
 ];

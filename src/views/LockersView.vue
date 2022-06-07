@@ -36,6 +36,7 @@ async function bookLocker(lockerId: string, lockerName: string, reload: () => vo
     await axiosInstance.patch('/lockers/book', {
       id: lockerId
     })
+    reload();
   } catch (err) {
   }
 
